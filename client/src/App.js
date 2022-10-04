@@ -2,9 +2,22 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
-import Patient from "./pages/Patient";
-import Doctor from "./pages/Doctor";
-import Home from "./pages/Home";
+
+// Patient Pages
+import Dashboard from "./pages/patient-pages/Dashboard";
+import Reports from "./pages/patient-pages/Reports";
+
+// Doctor Pages
+import Patient from "./pages/doctor-pages/Patient";
+import Patients from "./pages/doctor-pages/Patients";
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -12,13 +25,31 @@ function App() {
       <div>
         <ul>
           <li>
+            <Link>Doctor:</Link>
+          </li>
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/patient">Patient Page</Link>
+            <Link to="/patient">Patient</Link>
           </li>
           <li>
-            <Link to="/doctor">Doctor Page</Link>
+            <Link to="/patients">Patients</Link>
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <Link>Patient:</Link>
+          </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/reports">Reports</Link>
           </li>
         </ul>
 
@@ -34,7 +65,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/patient" element={<Patient />} />
-          <Route path="/doctor" element={<Doctor />} />
+          <Route path="/patients" element={<Patients />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/reports" element={<Reports />} />
         </Routes>
       </div>
     </Router>
