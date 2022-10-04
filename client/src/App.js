@@ -12,6 +12,8 @@ import Patient from "./pages/doctor-pages/Patient";
 import Patients from "./pages/doctor-pages/Patients";
 
 function Home() {
+  // Just temporary.
+  // We can separate out the pages for doctor/pages once we do login stuff.
   return (
     <div>
       <h2>Home</h2>
