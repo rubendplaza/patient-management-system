@@ -10,10 +10,12 @@
 6. run the command: `npm install -g nodemon`
 7. In your ide, create a file under 'server' called .env
 8. Ask Ruben for the contents of this file. (We can't have it living on github, it has passwords)
-9. While in 'server' run the command: `nodemon server`
-10. You should see that the server is running and the mongo connection established successfully
-11. If you get errors let Ruben know.
-12. In your other terminal instance, cd into 'client'
-13. Run the command: `npm start`
-14. A browser window should pop up with the running react application.
-15. Again if any problems, let Ruben know.
+9. While in 'server' run the command: `npm install`
+10. Then run: `npm start`
+11. You should see that the server is running and the mongo connection established successfully
+12. If you get errors let Ruben know.
+13. In your other terminal instance, cd into 'client'
+14. Run the command: `npm install`
+15. Then run: `npm start`
+16. A browser window should pop up with the running react application.
+17. Again if any problems, let Ruben know.
