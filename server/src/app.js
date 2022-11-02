@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    // where our client will be running. Allow resource sharing with this port
+    // For dev: where our client will be running. Allow resource sharing with this port
     origin: "http:localhost:3000",
   })
 );
