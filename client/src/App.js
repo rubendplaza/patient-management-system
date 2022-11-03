@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
-
+import Login from "./pages/Login"; 
+import Register from "./pages/Register";
 // Patient Pages
 import Dashboard from "./pages/patient-pages/Dashboard";
 import Reports from "./pages/patient-pages/Reports";
@@ -32,6 +33,7 @@ function App() {
           <li>
             <Link to="/">Home</Link>
           </li>
+          
           <li>
             <Link to="/patient">Patient</Link>
           </li>
@@ -70,6 +72,8 @@ function App() {
           <Route path="/patients" element={<Patients />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </Router>
