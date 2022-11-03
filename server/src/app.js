@@ -10,8 +10,8 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    // where our client will be running. Allow resource sharing with this port
-    origin: "http:localhost:3000",
+    // For dev: where our client will be running. Allow resource sharing with this port
+    origin: "http://localhost:3000",
   })
 );
 
@@ -21,10 +21,10 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 // makes api route /v1
-app.use("v1", api);
+app.use("/v1", api);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
-module.expors = app;
+module.exports = app;
