@@ -26,7 +26,7 @@ function Login() {
 		if (data.success) {
 			localStorage.setItem('token', data.user)
 			alert('Login successful')
-			window.location.href = './patient-pages/dashboard'
+			window.location.href = './dashboard'
 		} else {
 			alert('Please check your username and password')
 		}
