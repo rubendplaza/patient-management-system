@@ -65,7 +65,7 @@ function Register() {
 				<br />
 				<br /> 
 				<input type="submit" value="Register" id="submit"/>
-				<a href="./login">or Login</a>
+		
 			</form>
 		</div>
 	)
