@@ -12,7 +12,7 @@ function Register() {
 	async function registerUser(event) {
 		event.preventDefault()
 
-		const response = await fetch('http://localhost:1337/api/register', {
+		const response = await fetch('http://localhost:8000/v1/login/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ function Register() {
 				<br />
 				<br /> 
 				<input type="submit" value="Register" id="submit"/>
-		
+				<a href="./login">or Login</a>
 			</form>
 		</div>
 	)
