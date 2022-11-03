@@ -23,10 +23,10 @@ function Login() {
 		const data = await response.json()
 		console.log(data); 
 
-		if (data.user) {
+		if (data.success) {
 			localStorage.setItem('token', data.user)
 			alert('Login successful')
-			window.location.href = '/dashboard'
+			window.location.href = './patient-pages/dashboard'
 		} else {
 			alert('Please check your username and password')
 		}

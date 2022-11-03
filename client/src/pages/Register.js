@@ -25,9 +25,10 @@ function Register() {
 		})
 
 		const data = await response.json()
+		console.log(data); 
 
-		if (data.status === 'ok') {
-			history('/login')
+		if (data.success === 'ok') {
+			history('./login')
 		}
 	}
 
