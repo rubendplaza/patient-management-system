@@ -1,6 +1,9 @@
 const doctors = require("./doctors.mongo");
 
 // IMPLEMENT REQUIRED METHODS HERE.
+async function addDoctor(doctor) {
+  return await doctors.create(doctor);
+}
 
 async function getAllDoctors() {
   return await doctors.find(
@@ -13,5 +16,5 @@ async function getAllDoctors() {
 }
 
 module.exports = {
-  getAllDoctors,
+  getAllDoctors, addDoctor
 };
