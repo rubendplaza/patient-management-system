@@ -3,6 +3,10 @@ const patients = require("./patients.mongo");
 
 // IMPLEMENT REQUIRED METHODS HERE
 
+async function addPatient(patient) {
+  return await patients.create(patient);
+}
+
 // Unfinished functions trying to add data to the mongodb
 
 /* async function savePatient(patient)
@@ -73,8 +77,7 @@ async function getAllPatients() {
   );
 }
 
-async function testing()
-{
+async function testing() {
   await mongoConnect();
   await loadTestPatientInfo();
   await mongoDisconnect();
@@ -82,4 +85,5 @@ async function testing()
 
 module.exports = {
   getAllPatients,
+  addPatient,
 };

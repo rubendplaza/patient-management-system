@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
+const patientsSchema = require("../patients/patients.schema");
 
 const doctorsSchema = new mongoose.Schema({
-  // DEFINE SCHEMA FOR DOCTORS HERE
+  //id: { type: mongoose.Types.ObjectId, required: true },
   name: { type: String, required: true },
-  id: { type: String, required: true },
-  patients: [patientsSchema]
+  patients: { type: [patientsSchema], required: false, default: undefined },
 });
 
 // const doctorAppointmentSchema = new mongoose.Schema(

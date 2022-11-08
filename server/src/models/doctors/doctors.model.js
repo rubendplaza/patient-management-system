@@ -16,5 +16,6 @@ async function getAllDoctors() {
 }
 
 module.exports = {
-  getAllDoctors, addDoctor
+  getAllDoctors,
+  addDoctor,
 };
