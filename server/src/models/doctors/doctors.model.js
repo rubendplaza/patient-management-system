@@ -1,17 +1,29 @@
-const Doctors = require("./doctors.mongo");
+const doctors = require("./doctors.mongo");
+const patients = require("../patients/patients.mongo");
 
 // IMPLEMENT REQUIRED METHODS HERE.
 async function addDoctor(doctor) {
-  return await Doctors.create(doctor);
+  return await doctors.create(doctor);
 }
 
 async function getAllDoctors() {
-  return await Doctors.find()
-  .then(doctors => res.json(doctors))
-  .catch(err => res.status(400).json('Error: ' + err));
+  return await doctors.find({});
+}
+
+//if patients will have a doctor's array added
+// async function getDoctorPatients(d_name) {
+//   const patients = await patients.find({doctors: {name: d_name}});
+//   return patients;
+// }
+
+//if patients are going to be added to doctor's patients array
+async function getDoctorPatients(d_name) {
+  const patients = await doctors.find({name: d_name}, {name: 0, patients: 1})
+  return patients;
 }
 
 module.exports = {
   getAllDoctors,
   addDoctor,
+  getDoctorPatients
 };
