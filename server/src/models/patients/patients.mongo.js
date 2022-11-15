@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const patientsSchema = require("./patients.schema");
+const { patientsSchema } = require("./patients.schema");
 
 // NOTE: This isn't the proper convention.
 // To make this work the way we've been doing it up
