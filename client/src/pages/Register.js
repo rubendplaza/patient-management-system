@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import './register.css'
 
 function Register() {
-	const history = useNavigate()
+	
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [isDoctor, setIsDoctor] = useState('')
+	const [doctorName, setDoctorName] = useState(null)
 
 	async function registerUser(event) {
 		event.preventDefault()
+		console.log(isDoctor)
 
 		const response = await fetch('http://localhost:8000/v1/login/register', {
 			method: 'POST',
@@ -21,14 +23,20 @@ function Register() {
 				name,
 				email,
 				password,
+				isDoctor,
+				doctorName
 			}),
 		})
 
 		const data = await response.json()
 		console.log(data); 
 
-		if (data.success === 'ok') {
-			history('./login')
+		if (data.success) {
+			localStorage.setItem('id', data.id)
+			alert('Registration successful')
+			window.location.href = './dashboard'
+		} else {
+			alert('Please Fill In Missing Information')
 		}
 	}
 
@@ -45,6 +53,24 @@ function Register() {
 					placeholder="Enter Name"
 					id="name"
 				/>
+			<br /> 
+			<label for="name">Are you a doctor?</label> <br /> 
+				<input
+					name="isDoctor"
+					value="true"
+					onChange={(e) => setIsDoctor(e.target.value)}
+					type="radio"
+					id="true" />
+					<label for="true">Yes</label>
+
+					<input
+					name="isDoctor"
+					value="false"
+					onChange={(e) => setIsDoctor(e.target.value)}
+					type="radio"
+					id="false" />
+					<label for="false">No</label>
+
 				<br />
 				<label for="email">Email</label> <br /> 
 				<input

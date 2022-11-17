@@ -24,7 +24,7 @@ function Login() {
 		console.log(data); 
 
 		if (data.success) {
-			localStorage.setItem('token', data.user)
+			localStorage.setItem('id', data.id)
 			alert('Login successful')
 			window.location.href = './dashboard'
 		} else {
