@@ -1,5 +1,6 @@
 const ObjectId = require('mongodb').ObjectId;
 const patients = require("./patients.mongo");
+const { getDoctor } = require("../doctors/doctors.model")
 
 // IMPLEMENT REQUIRED METHODS HERE
 
@@ -26,9 +27,15 @@ async function updatePatient(patient)
   return await patients.findOneAndUpdate({ _id: ObjectId(patient._id), }, { $set: patient }, {new: true, upsert: true})
 }
 
+async function getPatientsDoctor(patient)
+{
+  return await getDoctor(patient.doctorId)
+}
+
 module.exports = {
   getAllPatients,
   addPatient,
   getPatient,
-  updatePatient
+  updatePatient,
+  getPatientsDoctor
 };
