@@ -8,7 +8,7 @@ const doctorsRouter = express.Router();
 doctorsRouter.get("/", httpGetAllDoctors);
 doctorsRouter.post("/add", httpAddDoctor);
 doctorsRouter.post("/getbyid", httpGetDoctorById)
-doctorsRouter.get("/patients", httpGetDoctorPatients);
+doctorsRouter.get("/patients/:id", httpGetDoctorPatients);
 // doctorsRouter.route('/add').post((req, res) => {
 //     const username = req.body.username;
 
