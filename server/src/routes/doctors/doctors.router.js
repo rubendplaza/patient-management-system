@@ -1,12 +1,13 @@
 const express = require("express");
 //let Doctor = require('../models/doctors.mongo');
 
-const { httpGetAllDoctors, httpAddDoctor, httpGetDoctorPatients } = require("./doctors.controller");
+const { httpGetAllDoctors, httpAddDoctor, httpGetDoctorPatients, httpGetDoctorById } = require("./doctors.controller");
 const doctorsRouter = express.Router();
 
 // Route currently: /v1/doctors/
 doctorsRouter.get("/", httpGetAllDoctors);
 doctorsRouter.post("/add", httpAddDoctor);
+doctorsRouter.post("/getbyid", httpGetDoctorById)
 doctorsRouter.get("/patients", httpGetDoctorPatients);
 // doctorsRouter.route('/add').post((req, res) => {
 //     const username = req.body.username;

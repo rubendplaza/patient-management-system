@@ -1,3 +1,4 @@
+const ObjectId = require('mongodb').ObjectId;
 const doctors = require("./doctors.mongo");
 const patients = require("../patients/patients.mongo");
 
@@ -8,6 +9,13 @@ async function addDoctor(doctor) {
 
 async function getAllDoctors() {
   return await doctors.find({});
+}
+
+async function getDoctor(doctor_id) {
+  return await doctors.findOne(
+    { _id: ObjectId(doctor_id), },
+    { __v: 0, }
+  )
 }
 
 //if patients will have a doctor's array added
@@ -25,5 +33,6 @@ async function getDoctorPatients(d_name) {
 module.exports = {
   getAllDoctors,
   addDoctor,
-  getDoctorPatients
+  getDoctorPatients,
+  getDoctor
 };

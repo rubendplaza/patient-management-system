@@ -1,4 +1,4 @@
-const { addPatient, getAllPatients, getPatient, updatePatient } = require("../../models/patients/patients.model");
+const { addPatient, getAllPatients, getPatient, updatePatient, getPatientsDoctor } = require("../../models/patients/patients.model");
 
 async function httpGetAllPatients(req, res) {
   return res.status(200).json(await getAllPatients());
@@ -69,8 +69,37 @@ async function httpUpdatePatient(req, res)
   }
 }
 
+async function httpGetPatientsDoctor(req, res)
+{
+  // Get the patient info
+  patient = req.body;
+  // Check the patient info is valid
+  if(!patient.doctorId)
+  {
+    return res.status(400).json({
+      error: "Patient has no doctor.",
+    });
+  }
+
+  // Try to get the patient's doctor
+  try
+  {
+    // Try to get the doctor
+    patientsDoctor = await getPatientsDoctor(patient);
+    // Return the doctor
+    return res.status(200).json(patientsDoctor);
+  }
+  catch (err)
+  {
+    return res.status(500).json({
+      error: "Error getting the doctor",
+    });
+  }
+}
+
 module.exports = {
   httpGetAllPatients,
   httpGetPatientById,
   httpUpdatePatient,
+  httpGetPatientsDoctor
 };
