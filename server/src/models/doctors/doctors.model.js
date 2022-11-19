@@ -25,9 +25,8 @@ async function getDoctor(doctor_id) {
 // }
 
 //if patients are going to be added to doctor's patients array
-async function getDoctorPatients(d_name) {
-  const patients = await doctors.find({name: d_name}, {name: 0, patients: 1})
-  return patients;
+async function getDoctorPatients(d_Id) {
+  return await patients.find({doctorId: ObjectId(d_Id)});
 }
 
 module.exports = {

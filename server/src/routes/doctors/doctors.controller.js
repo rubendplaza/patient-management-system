@@ -77,7 +77,7 @@ async function httpGetAllDoctors(req, res) {
 
 async function httpGetDoctorPatients(req, res) {
   try {
-    return res.status(200).json(await getDoctorPatients());
+    return res.status(200).json(await getDoctorPatients(req.params.id));
   } catch (err) {
     return res.status(500).json({
       error: "Could not find doctor's patients.",
