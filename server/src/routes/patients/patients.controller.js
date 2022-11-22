@@ -6,10 +6,10 @@ async function httpGetAllPatients(req, res) {
 
 async function httpGetPatientById(req, res)
 {
-  // Get the body of the http request
-  info = req.body;
+  // Get the id parameter from the http url
+  id = req.params.patientid;
   // Check if the required field is present
-  if (!info.id)
+  if (!id)
   {
     return res.status(400).json({
       error: "Missing id.",
@@ -18,7 +18,6 @@ async function httpGetPatientById(req, res)
   try
   {
     // Fetch the user from the db
-    const id = info.id;
     patient = await getPatient(id);
 
     // Check if we found a patient
@@ -72,8 +71,15 @@ async function httpUpdatePatient(req, res)
 async function httpGetPatientsDoctor(req, res)
 {
   // Get the patient info
-  patient = req.body;
+  patient = await getPatient(req.params.patientid);
   // Check the patient info is valid
+  if(!patient._id)
+  {
+    return res.status(400).json({
+      error: "No patient with that ID.",
+    });
+  }
+
   if(!patient.doctorId)
   {
     return res.status(400).json({
