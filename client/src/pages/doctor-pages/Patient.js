@@ -1,10 +1,9 @@
-// This is where Nyle will code up the UI during first sprint.
-
-// Coordinate with Adam because this view might be the same as Patient.js in doctor-pages
 import Patientcard from "../../components/patientcard";
 import { VscFilePdf } from "react-icons/vsc";
 import "./Patient.css";
 import Navbar from "../../components/navbar";
+import 'semantic-ui-css/semantic.min.css'
+import { Button, Table, Image, Header } from 'semantic-ui-react'
 
 const Patient = (props) => {
   return (
@@ -18,49 +17,63 @@ const Patient = (props) => {
           sex="Male"
           age="37"
           blood="AB-"
-          ill="Bad Teammates"
+          ill={["Bad Teammates"]}
         />
 
-        <h2>Upcoming Appointments</h2>
-          <table>
-            <tr>
-              <th>Where</th>
-              <th>Purpose</th>
-              <th>When</th>
-            </tr>
-            <tr>
-              <td>Humber River Hospital</td>
-              <td>X-Ray</td>
-              <td>Wednesday, October 5, 2022</td>
-            </tr>
-            <tr>
-              <td>Madison Square Garden</td>
-              <td>Drop 50</td>
-              <td>Thursday, October 6, 2022</td>
-            </tr>
-          </table>
-
-        <h2>Reports</h2>
-        <table>
-          <tr>
-            <th>Report</th>
-            <th>Date</th>
-            <th>Notes</th>
-            <th>PDF</th>
-          </tr>
-          <tr>
-            <td>Blood Test</td>
-            <td>October 4, 2022</td>
-            <td>Contains ice</td>
-            <td><VscFilePdf /></td>
-          </tr>
-          <tr>
-            <td>Covid-19</td>
-            <td>October 4, 2022</td>
-            <td>Negative</td>
-            <td><VscFilePdf /></td>
-          </tr>
-        </table>
+        <Header size="large">
+          Upcoming Apointments
+        </Header>
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Where</Table.HeaderCell>
+              <Table.HeaderCell>Purpose</Table.HeaderCell>
+              <Table.HeaderCell>When</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Row>
+            <Table.Cell>Humber River Hospital</Table.Cell>
+            <Table.Cell>X-Ray</Table.Cell>
+            <Table.Cell>Wednesday, October 5, 2022</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Madison Square Garden</Table.Cell>
+            <Table.Cell>Drop 50</Table.Cell>
+            <Table.Cell>Thursday, October 6, 2022</Table.Cell>
+          </Table.Row>
+        </Table>
+        <Header size="large">
+          Reports
+        </Header>
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Report</Table.HeaderCell>
+              <Table.HeaderCell>Date</Table.HeaderCell>
+              <Table.HeaderCell>Notes</Table.HeaderCell>
+              <Table.HeaderCell>PDF</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Row>
+            <Table.Cell>Blood Test</Table.Cell>
+            <Table.Cell>October 4, 2022</Table.Cell>
+            <Table.Cell>Contains ice</Table.Cell>
+            <Table.Cell><Image src="/Images/Out.svg" /></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Covid-19</Table.Cell>
+            <Table.Cell>October 4, 2022</Table.Cell>
+            <Table.Cell>Negative</Table.Cell>
+            <Table.Cell><Image src="/Images/Out.svg" /></Table.Cell>
+          </Table.Row>
+        </Table>
+      
+        <Button.Group floated="right">
+          <Button primary
+            style = {{marginTop:5}}
+            type="button"
+            >Edit</Button>
+        </Button.Group>
       </div>
     </div>
   );
