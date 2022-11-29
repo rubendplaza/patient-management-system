@@ -5,8 +5,8 @@ const patientsRouter = express.Router();
 
 // Route currently: /v1/patients/
 patientsRouter.get("/", httpGetAllPatients);
-patientsRouter.post("/getbyid", httpGetPatientById);
+patientsRouter.get("/getbyid/:patientid", httpGetPatientById);
 patientsRouter.post("/update", httpUpdatePatient);
-patientsRouter.post("/getdoctor", httpGetPatientsDoctor);
+patientsRouter.get("/getdoctor/:patientid", httpGetPatientsDoctor);
 
 module.exports = patientsRouter;
