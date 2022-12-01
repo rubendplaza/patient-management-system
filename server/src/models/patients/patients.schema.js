@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ObjectId = require('mongodb').ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 
 const patientsSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -7,7 +7,7 @@ const patientsSchema = new mongoose.Schema({
   age: { type: Number, required: false },
   bloodType: { type: String, required: false },
   knownIllnesses: { type: [String], required: false },
-  doctorId: { type: ObjectId, required: false },
+  doctorId: { type: ObjectId, required: true },
   // upcomingAppointments: [appointmentSchema],
   // reports: [reportSchema],
 });

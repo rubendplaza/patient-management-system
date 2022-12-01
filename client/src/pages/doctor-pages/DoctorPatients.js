@@ -2,12 +2,11 @@
 
 // Coordinate with Adam because this view might be the same as Dashboard.js in patient-pages
 import Patientcard from "../../components/patientcard";
-import "./Patients.css";
+import "./DoctorPatients.css";
 import Navbar from "../../components/navbar";
 
-const Patients = (props) => {
-
-  const INFO= [
+const DoctorPatients = (props) => {
+  const INFO = [
     {
       img: "/Images/JaneDoe.png",
       name: "Jane Doe",
@@ -15,15 +14,18 @@ const Patients = (props) => {
       age: 21,
       bloodType: "A+",
       knownIllnesses: ["Peanut Allergy", "Test Illness 2"],
-      upcomingAppointments: [{
-        location: "Women's Hospital",
-        purpose: "Ultrasound",
-        date: "Thursday, October 5, 2022, 5:00PM"
-      }, {
-        location: "Scarborough General Hospital",
-        purpose: "X-ray",
-        date: "Sunday, October 21, 2022, 6:00PM"
-      }]
+      upcomingAppointments: [
+        {
+          location: "Women's Hospital",
+          purpose: "Ultrasound",
+          date: "Thursday, October 5, 2022, 5:00PM",
+        },
+        {
+          location: "Scarborough General Hospital",
+          purpose: "X-ray",
+          date: "Sunday, October 21, 2022, 6:00PM",
+        },
+      ],
     },
     {
       img: "/Images/JaneDoe.png",
@@ -32,15 +34,18 @@ const Patients = (props) => {
       age: 21,
       bloodType: "O-",
       knownIllnesses: ["Swag", "Smelly"],
-      upcomingAppointments: [{
-        location: "Men's Hospital",
-        purpose: "General Check-up",
-        date: "Thursday, November 5, 2022, 5:00PM"
-      }, {
-        location: "Scarborough General Hospital",
-        purpose: "X-ray",
-        date: "Sunday, November 21, 2022, 6:00PM"
-      }]
+      upcomingAppointments: [
+        {
+          location: "Men's Hospital",
+          purpose: "General Check-up",
+          date: "Thursday, November 5, 2022, 5:00PM",
+        },
+        {
+          location: "Scarborough General Hospital",
+          purpose: "X-ray",
+          date: "Sunday, November 21, 2022, 6:00PM",
+        },
+      ],
     },
     {
       img: "/Images/JaneDoe.png",
@@ -49,15 +54,18 @@ const Patients = (props) => {
       age: 37,
       bloodType: "AB-",
       knownIllnesses: ["Old Age", "Bad Teammates"],
-      upcomingAppointments: [{
-        location: "Humber River Hospital",
-        purpose: "X-Ray",
-        date: "Thursday, October 5, 2022, 5:00PM"
-      }, {
-        location: "Madison Square Garden",
-        purpose: "Drop 50",
-        date: "Sunday, December 21, 2022, 6:00PM"
-      }]
+      upcomingAppointments: [
+        {
+          location: "Humber River Hospital",
+          purpose: "X-Ray",
+          date: "Thursday, October 5, 2022, 5:00PM",
+        },
+        {
+          location: "Madison Square Garden",
+          purpose: "Drop 50",
+          date: "Sunday, December 21, 2022, 6:00PM",
+        },
+      ],
     },
     {
       img: "/Images/JaneDoe.png",
@@ -66,38 +74,39 @@ const Patients = (props) => {
       age: 24,
       bloodType: "B+",
       knownIllnesses: ["Sick", "Test Illness 2"],
-      upcomingAppointments: [{
-        location: "Toronto Hospital",
-        purpose: "Cough",
-        date: "Wednesday, November 23, 2022, 5:00PM"
-      }, {
-        location: "Scarborough General Hospital",
-        purpose: "Vaccine",
-        date: "Sunday, October 31, 2022, 8:00PM"
-      }]
-    }
-  ]
+      upcomingAppointments: [
+        {
+          location: "Toronto Hospital",
+          purpose: "Cough",
+          date: "Wednesday, November 23, 2022, 5:00PM",
+        },
+        {
+          location: "Scarborough General Hospital",
+          purpose: "Vaccine",
+          date: "Sunday, October 31, 2022, 8:00PM",
+        },
+      ],
+    },
+  ];
   return (
     <div>
       <Navbar />
       <h2>Patients Page</h2>
       <div className="patients">
-        { INFO.map((patient) => 
-          {
-            return (
-              <div>
-                <Patientcard
-                  img= {patient.img}
-                  name= {patient.name}
-                  sex= {patient.sex}
-                  age= {patient.age}
-                  blood= {patient.bloodType}
-                  ill= {patient.knownIllnesses}
-                />
-              </div>
-            )
-          }
-        )}
+        {INFO.map((patient) => {
+          return (
+            <div>
+              <Patientcard
+                img={patient.img}
+                name={patient.name}
+                sex={patient.sex}
+                age={patient.age}
+                blood={patient.bloodType}
+                ill={patient.knownIllnesses}
+              />
+            </div>
+          );
+        })}
         {/* <div>
           <Patientcard 
             img="/lebron.jpg"
@@ -158,10 +167,9 @@ const Patients = (props) => {
             ill="bad teammates"
           />
         </div> */}
-      
       </div>
     </div>
   );
 };
 
-export default Patients;
+export default DoctorPatients;

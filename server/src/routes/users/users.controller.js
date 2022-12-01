@@ -105,14 +105,14 @@ async function httpRegisterUser(req, res) {
   }
 
   // Check for whether doctor or patient
-  if (!userInfo.isDoctor && !userInfo.doctorName) {
+  if (userInfo.isDoctor == "false" && !userInfo.doctorName) {
     // Malformed patient object
     return res.status(400).json({
       error: "Missing required patient information.",
     });
   }
 
-  if (userInfo.isDoctor && userInfo.doctorName) {
+  if (userInfo.isDoctor == "true" && userInfo.doctorName) {
     // Malformed doctor object
     return res.status(400).json({
       error: "Missing required doctor information.",
