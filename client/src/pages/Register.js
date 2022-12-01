@@ -25,9 +25,6 @@ function Register() {
 
   async function registerUser(event) {
     event.preventDefault();
-    console.log(isDoctor);
-
-    setIsDoctor(isDoctor == "true" ? true : false);
 
     const response = await fetch("http://localhost:8000/v1/login/register", {
       method: "POST",

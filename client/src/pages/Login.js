@@ -23,6 +23,7 @@ function Login() {
     console.log(data);
 
     if (data.success) {
+      localStorage.setItem("isDoctor", data.isDoctor);
       localStorage.setItem("id", data.id);
       alert("Login successful");
       if (localStorage.getItem("isDoctor") == "true") {

@@ -3,7 +3,19 @@
 // Coordinate with Adam because this view might be the same as Dashboard.js in patient-pages
 import Patientcard from "../../components/patientcard";
 import "./DoctorPatients.css";
-import Navbar from "../../components/navbar";
+import "semantic-ui-css/semantic.min.css";
+import userCircle from "../../images/User_cicrle_light.svg";
+import {
+  Menu,
+  Image,
+  Container,
+  Segment,
+  List,
+  Grid,
+  Header,
+  Table,
+} from "semantic-ui-react";
+import { NavLink, withRouter } from "react-router-dom";
 
 const DoctorPatients = (props) => {
   const INFO = [
@@ -90,7 +102,40 @@ const DoctorPatients = (props) => {
   ];
   return (
     <div>
-      <Navbar />
+      <Menu
+        color="blue"
+        inverted
+        fixed="top"
+        size="large"
+        borderless
+        style={{ borderBottomWidth: "5px", borderBottomColor: "black" }}
+      >
+        <Menu.Item
+          as={NavLink}
+          to="/doctorpatients"
+          name="my-patients"
+          active={false}
+        >
+          My Patients
+        </Menu.Item>
+        <Menu.Item
+          as={NavLink}
+          to="/doctorpatient"
+          name="my-patient"
+          active={false}
+        >
+          My Patient
+        </Menu.Item>
+        <Menu.Item
+          as={NavLink}
+          to="/"
+          name="Icon"
+          active={false}
+          position="right"
+        >
+          <Image src={userCircle} size="mini" />
+        </Menu.Item>
+      </Menu>
       <h2>Patients Page</h2>
       <div className="patients">
         {INFO.map((patient) => {

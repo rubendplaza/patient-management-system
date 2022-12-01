@@ -28,16 +28,12 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/patient">
-            <Route index element={<Patient />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-          <Route path="/doctor">
-            <Route index element={<Doctor />} />
-            <Route path="/patients" element={<DoctorPatients />} />
-            <Route path="/patient" element={<DoctorPatient />} />
-          </Route>
+          <Route path="/patient" element={<Patient />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/doctor" element={<Doctor />} />
+          <Route path="/doctorpatients" element={<DoctorPatients />} />
+          <Route path="/doctorpatient" element={<DoctorPatient />} />
         </Routes>
       </div>
     </Router>

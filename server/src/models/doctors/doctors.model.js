@@ -1,4 +1,4 @@
-const ObjectId = require('mongodb').ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 const doctors = require("./doctors.mongo");
 const patients = require("../patients/patients.mongo");
 
@@ -12,12 +12,12 @@ async function getAllDoctors() {
 }
 
 async function getDoctor(doctor_id) {
-  return await doctors.findOne(
-    { _id: ObjectId(doctor_id), },
-    { __v: 0, }
-  )
+  return await doctors.findOne({ _id: ObjectId(doctor_id) }, { __v: 0 });
 }
 
+async function getDoctorByName(doctorName) {
+  return await doctors.findOne({ name: doctorName });
+}
 //if patients will have a doctor's array added
 // async function getDoctorPatients(d_name) {
 //   const patients = await patients.find({doctors: {name: d_name}});
@@ -26,12 +26,13 @@ async function getDoctor(doctor_id) {
 
 //if patients are going to be added to doctor's patients array
 async function getDoctorPatients(d_Id) {
-  return await patients.find({doctorId: ObjectId(d_Id)});
+  return await patients.find({ doctorId: ObjectId(d_Id) });
 }
 
 module.exports = {
   getAllDoctors,
   addDoctor,
   getDoctorPatients,
-  getDoctor
+  getDoctor,
+  getDoctorByName,
 };

@@ -6,7 +6,10 @@ const {
   getUserByEmail,
 } = require("../../models/users/users.model");
 const { addPatient } = require("../../models/patients/patients.model");
-const { addDoctor } = require("../../models/doctors/doctors.model");
+const {
+  addDoctor,
+  getDoctorByName,
+} = require("../../models/doctors/doctors.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
@@ -71,6 +74,7 @@ async function httpLoginUser(req, res) {
       return res.status(200).json({
         success: true,
         token: token,
+        isDoctor: userFromDB.isDoctor,
         name: userFromDB.name,
         email: userFromDB.email,
         id: userFromDB.id,
@@ -134,15 +138,17 @@ async function httpRegisterUser(req, res) {
     // Is patient:
     let newEntity;
     let id;
-    if (!userInfo.isDoctor) {
+    if (userInfo.isDoctor == "false" || !userInfo.isDoctor) {
+      const patientsDoctor = await getDoctorByName(userInfo.doctorName);
       newEntity = {
         name: userInfo.name,
+        doctorId: patientsDoctor._id,
       };
       id = await addPatient(newEntity);
     }
 
     // Is doctor:
-    else if (userInfo.isDoctor) {
+    else if (userInfo.isDoctor == "true" || userInfo.isDoctor) {
       newEntity = {
         name: userInfo.name,
       };
@@ -152,6 +158,7 @@ async function httpRegisterUser(req, res) {
     const hashedPassword = await bcrypt.hash(userInfo.password, 10);
 
     const user = {
+      isDoctor: userInfo.isDoctor,
       name: userInfo.name,
       email: userInfo.email,
       password: hashedPassword,
@@ -161,11 +168,13 @@ async function httpRegisterUser(req, res) {
     await registerNewUser(user);
     return res.status(201).json({
       success: true,
+      isDoctor: userInfo.isDoctor,
       name: userInfo.name,
       email: userInfo.email,
       id: user.id,
     });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({
       error: "Could not register user.",
     });

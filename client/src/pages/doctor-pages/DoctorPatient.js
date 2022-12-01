@@ -5,11 +5,57 @@ import Patientcard from "../../components/patientcard";
 import { VscFilePdf } from "react-icons/vsc";
 import "./DoctorPatient.css";
 import Navbar from "../../components/navbar";
+import userCircle from "../../images/User_cicrle_light.svg";
+import "semantic-ui-css/semantic.min.css";
+import {
+  Menu,
+  Image,
+  Container,
+  Segment,
+  List,
+  Grid,
+  Header,
+  Table,
+} from "semantic-ui-react";
+import { NavLink, withRouter } from "react-router-dom";
 
 const DoctorPatient = (props) => {
   return (
     <div>
-      <Navbar />
+      <Menu
+        color="blue"
+        inverted
+        fixed="top"
+        size="large"
+        borderless
+        style={{ borderBottomWidth: "5px", borderBottomColor: "black" }}
+      >
+        <Menu.Item
+          as={NavLink}
+          to="/doctorpatients"
+          name="my-patients"
+          active={false}
+        >
+          My Patients
+        </Menu.Item>
+        <Menu.Item
+          as={NavLink}
+          to="/doctorpatient"
+          name="my-patient"
+          active={false}
+        >
+          My Patient
+        </Menu.Item>
+        <Menu.Item
+          as={NavLink}
+          to="/"
+          name="Icon"
+          active={false}
+          position="right"
+        >
+          <Image src={userCircle} size="mini" />
+        </Menu.Item>
+      </Menu>
       <h2>Patient Page</h2>
       <div className="patient">
         <Patientcard
