@@ -2,9 +2,11 @@
 
 // Coordinate with Adam because this view might be the same as Patient.js in doctor-pages
 import Patientcard from "../../components/patientcard";
+import DoctorPatientForm from "../../components/DoctorPatientForm";
 import { VscFilePdf } from "react-icons/vsc";
 import "./DoctorPatient.css";
 import Navbar from "../../components/navbar";
+import React, { useState } from "react";
 import userCircle from "../../images/User_cicrle_light.svg";
 import "semantic-ui-css/semantic.min.css";
 import {
@@ -20,6 +22,20 @@ import {
 import { NavLink, withRouter } from "react-router-dom";
 
 const DoctorPatient = (props) => {
+  const [patientData, setPatientData] = React.useState([]);
+  const patientId = localStorage.getItem("patientId");
+  console.log(patientId);
+  React.useEffect(() => {
+    const url = `http://localhost:8000/v1/patients/getbyid/${patientId}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("Patient:", json);
+        setPatientData([json]);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div>
       <Menu
@@ -58,16 +74,23 @@ const DoctorPatient = (props) => {
       </Menu>
       <h2>Patient Page</h2>
       <div className="patient">
-        <Patientcard
-          img="/lebron.jpg"
-          name="LeBron James"
-          sex="Male"
-          age="37"
-          blood="AB-"
-          ill="Bad Teammates"
-        />
+        {patientData.map((patient, index) => {
+          return (
+            <div key={index}>
+              <DoctorPatientForm
+                patientId={patient._id}
+                img="/Images/JaneDoe.png"
+                name={patient.name}
+                sex={patient.sex}
+                age={patient.age}
+                blood={patient.bloodType}
+                ill={patient.knownIllnesses}
+              />
+            </div>
+          );
+        })}
 
-        <h2>Upcoming Appointments</h2>
+        {/* <h2>Upcoming Appointments</h2>
         <table>
           <tr>
             <th>Where</th>
@@ -110,7 +133,7 @@ const DoctorPatient = (props) => {
               <VscFilePdf />
             </td>
           </tr>
-        </table>
+        </table> */}
       </div>
     </div>
   );

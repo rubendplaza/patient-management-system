@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,7 +26,6 @@ import DoctorPatients from "./DoctorPatients";
 import DoctorPatient from "./DoctorPatient";
 
 const Doctor = (props) => {
-  console.log(localStorage.getItem("id"));
   return (
     <div>
       <Menu

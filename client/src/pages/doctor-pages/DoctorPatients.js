@@ -1,6 +1,7 @@
 // This is where Nyle will code up the UI during first sprint.
 
 // Coordinate with Adam because this view might be the same as Dashboard.js in patient-pages
+import React, { useState } from "react";
 import Patientcard from "../../components/patientcard";
 import "./DoctorPatients.css";
 import "semantic-ui-css/semantic.min.css";
@@ -18,6 +19,19 @@ import {
 import { NavLink, withRouter } from "react-router-dom";
 
 const DoctorPatients = (props) => {
+  const [doctorPatients, setDoctorPatients] = React.useState([]);
+  const doctorId = localStorage.getItem("id");
+  React.useEffect(() => {
+    const url = `http://localhost:8000/v1/doctors/patients/${doctorId}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("Patients:", json);
+        setDoctorPatients(json);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   const INFO = [
     {
       img: "/Images/JaneDoe.png",
@@ -138,11 +152,12 @@ const DoctorPatients = (props) => {
       </Menu>
       <h2>Patients Page</h2>
       <div className="patients">
-        {INFO.map((patient) => {
+        {doctorPatients.map((patient, index) => {
           return (
-            <div>
+            <div key={index}>
               <Patientcard
-                img={patient.img}
+                patientId={patient._id}
+                img="/Images/JaneDoe.png"
                 name={patient.name}
                 sex={patient.sex}
                 age={patient.age}
