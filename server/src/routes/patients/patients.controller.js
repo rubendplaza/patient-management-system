@@ -21,11 +21,11 @@ async function httpGetPatientById(req, res)
     patient = await getPatient(id);
 
     // Check if we found a patient
-    if(!patient._id)
+    if(!patient)
     {
       // If not, error out
       return res.status(400).json({
-        error: "Couldn't find patient.",
+        error: "Couldn't find a patient with that ID.",
       });
     }
 
@@ -73,7 +73,7 @@ async function httpGetPatientsDoctor(req, res)
   // Get the patient info
   patient = await getPatient(req.params.patientid);
   // Check the patient info is valid
-  if(!patient._id)
+  if(patient)
   {
     return res.status(400).json({
       error: "No patient with that ID.",
