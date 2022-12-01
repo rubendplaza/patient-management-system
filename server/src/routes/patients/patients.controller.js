@@ -35,7 +35,7 @@ async function httpGetPatientById(req, res)
   catch (err)
   {
     return res.status(500).json({
-      error: "Error searching patient.",
+      error: "Error searching patient.\n" + err.message,
     });
   }
 }
@@ -63,7 +63,7 @@ async function httpUpdatePatient(req, res)
   catch (err)
   {
     return res.status(500).json({
-      error: "Error updating patient.",
+      error: "Error updating patient.\n" + err.message,
     });
   }
 }
@@ -98,7 +98,7 @@ async function httpGetPatientsDoctor(req, res)
   catch (err)
   {
     return res.status(500).json({
-      error: "Error getting the doctor",
+      error: "Error getting the doctor.\n" + err.message,
     });
   }
 }
