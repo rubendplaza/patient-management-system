@@ -108,7 +108,7 @@ const DoctorPatientForm = (props) => {
               onChange={(e) => handleIllnessesChange(e.target.value)}
             />
           </Form.Field>
-          <Button color='blue' type="submit">Conclusion</Button>
+          <Button color='blue' type="submit">Save Patient</Button>
         </Form>
       </Segment>
     </div>
