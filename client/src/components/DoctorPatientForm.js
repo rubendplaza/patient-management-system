@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./patientcard.css";
+import 'semantic-ui-css/semantic.min.css'
+import {Form, Button, Segment} from 'semantic-ui-react'
 
 const DoctorPatientForm = (props) => {
   const [_id, setId] = useState(props.patientId);
@@ -51,54 +53,64 @@ const DoctorPatientForm = (props) => {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label for="name">Name</label> <br />
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={name} // inject state correspond to input and so on
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <label for="sex">Sex</label> <br />
-        <input
-          type="text"
-          name="sex"
-          id="sex"
-          value={sex}
-          onChange={(e) => setSex(e.target.value)}
-        />
-        <br />
-        <label for="age">Age</label> <br />
-        <input
-          type="text"
-          name="age"
-          id="age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <br />
-        <label for="bloodtype">Blood Type</label> <br />
-        <input
-          type="text"
-          name="bloodtype"
-          id="bloodtype"
-          value={bloodType}
-          onChange={(e) => setBloodType(e.target.value)}
-        />
-        <br />
-        <label for="illnesses">Known Illnesses</label> <br />
-        <input
-          type="text"
-          name="illnesses"
-          id="illnesses"
-          value={knownIllnesses}
-          onChange={(e) => handleIllnessesChange(e.target.value)}
-        />
-        <br />
-        <button type="submit">Submit Edits</button>
-      </form>
+      <div class="ui hidden section divider"></div>
+      <Segment padded raised style={{borderWidth: "2px", borderColor: "black", borderRadius: "10px"}}>
+        <Segment vertical><h2><b>Patient Information</b></h2></Segment>
+        <br/>
+        <Form onSubmit={handleSubmit}>
+          <Form.Field>    
+            <label for="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name} // inject state correspond to input and so on
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label for="sex">Sex</label>
+            <input
+              type="text"
+              name="sex"
+              id="sex"
+              value={sex}
+              onChange={(e) => setSex(e.target.value)}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label for="age">Age</label>
+            <input
+              type="text"
+              name="age"
+              id="age"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label for="bloodtype">Blood Type</label>
+            <input
+              type="text"
+              name="bloodtype"
+              id="bloodtype"
+              value={bloodType}
+              onChange={(e) => setBloodType(e.target.value)}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label for="illnesses">Known Illnesses</label>
+            <input
+              type="text"
+              name="illnesses"
+              id="illnesses"
+              value={knownIllnesses}
+              onChange={(e) => handleIllnessesChange(e.target.value)}
+            />
+          </Form.Field>
+          <Button color='blue' type="submit">Conclusion</Button>
+        </Form>
+      </Segment>
     </div>
   );
 };
