@@ -157,7 +157,7 @@ const DoctorPatients = (props) => {
             <div key={index}>
               <Patientcard
                 patientId={patient._id}
-                img="/Images/JaneDoe.png"
+                img="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
                 name={patient.name}
                 sex={patient.sex}
                 age={patient.age}
