@@ -1,5 +1,6 @@
 // This is where Adam will code up the UI during first sprint.
-
+import { jsPDF } from "jspdf";
+import React, { useEffect, useState } from "react";
 import userCircle from "../../images/User_cicrle_light.svg";
 import { NavLink, withRouter } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
@@ -15,6 +16,93 @@ import {
 } from "semantic-ui-react";
 
 const Reports = (props) => {
+  const [todayDate, setTodayDate] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [bloodType, setBloodType] = useState("");
+  const [illness, setIllness] = useState("");
+  const [sex, setSex] = useState("");
+  const [doctor, setDoctor] = useState("");
+
+  useEffect(() => {
+    const tmpDate = new Date();
+    setTodayDate(String(tmpDate));
+    getInfo();
+  }, []);
+
+  useEffect(() => {
+    getDoctor();
+  }, []);
+
+  async function getInfo() {
+    const id = localStorage.getItem("id");
+    const response = await fetch(
+      `http://localhost:8000/v1/patients/getbyid/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+    console.log(data);
+    setName(data.name);
+    setAge(data.age);
+    setSex(data.sex);
+    setBloodType(data.bloodType);
+    setIllness(data.knownIllnesses);
+  }
+
+  async function getDoctor() {
+    const id = localStorage.getItem("id");
+    const response = await fetch(
+      `http://localhost:8000/v1/patients/getdoctor/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+    console.log(data);
+    setDoctor(data.name);
+  }
+
+  async function handleDownload() {
+    const patientId = localStorage.getItem("id");
+    const response = await fetch(
+      `http://localhost:8000/v1/patients/getbyid/${patientId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+    console.log("Received:", data);
+
+    const pdfText = [];
+    pdfText.push("COLLECTED DATE: " + todayDate);
+    pdfText.push("Name: " + name);
+    pdfText.push("Doctor Name: " + doctor);
+    pdfText.push("Age: " + age);
+    pdfText.push("Sex: " + sex);
+    pdfText.push("Blood Type: " + bloodType);
+    pdfText.push("Known Illessness: " + illness.join(","));
+
+    const doc = new jsPDF({
+      orientation: "landscape",
+    });
+
+    doc.text(pdfText, 10, 10);
+    doc.save("report.pdf");
+  }
   // Temporary test data
   const INFO = {
     img: "/Images/JaneDoe.png",
@@ -81,22 +169,18 @@ const Reports = (props) => {
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Report</Table.HeaderCell>
+              <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>Date</Table.HeaderCell>
-              <Table.HeaderCell>Notes</Table.HeaderCell>
               <Table.HeaderCell>PDF</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          {INFO.reports.map((reportDetails) => (
-            <Table.Row>
-              <Table.Cell>{reportDetails.type}</Table.Cell>
-              <Table.Cell>{reportDetails.date}</Table.Cell>
-              <Table.Cell>{reportDetails.notes}</Table.Cell>
-              <Table.Cell>
-                <Image src="/Images/Out.svg" />
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          <Table.Row>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{todayDate}</Table.Cell>
+            <Table.Cell onClick={handleDownload}>
+              <Image src="/Images/Out.svg" />
+            </Table.Cell>
+          </Table.Row>
         </Table>
       </Container>
     </div>
