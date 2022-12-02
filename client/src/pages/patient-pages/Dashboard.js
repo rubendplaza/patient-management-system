@@ -87,6 +87,9 @@ const Dashboard = (props) => {
         <Menu.Item as={NavLink} to="/reports" name="Reports" active={false}>
           Reports
         </Menu.Item>
+        <Menu.Item as={NavLink} to="/faq" name="FAQ" active={false}>
+          FAQ
+        </Menu.Item>
         <Menu.Item
           as={NavLink}
           to="/"
@@ -98,11 +101,16 @@ const Dashboard = (props) => {
         </Menu.Item>
       </Menu>
 
-        <Container fluid style={{ marginTop: "7em"}}>
-          <Grid centered padded relaxed columns={2} divided>
-            <Grid.Column verticalAlign="middle" width={2}>
-              <Image src={"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"} circular />
-            </Grid.Column>
+      <Container fluid style={{ marginTop: "7em" }}>
+        <Grid centered padded relaxed columns={2} divided>
+          <Grid.Column verticalAlign="middle" width={2}>
+            <Image
+              src={
+                "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
+              }
+              circular
+            />
+          </Grid.Column>
 
           <Grid.Column>
             <Segment

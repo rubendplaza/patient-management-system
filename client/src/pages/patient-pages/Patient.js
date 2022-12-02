@@ -42,6 +42,9 @@ const Patient = (props) => {
         <Menu.Item as={NavLink} to="/reports" name="Reports" active={false}>
           Reports
         </Menu.Item>
+        <Menu.Item as={NavLink} to="/faq" name="FAQ" active={false}>
+          FAQ
+        </Menu.Item>
         <Menu.Item
           as={NavLink}
           to="/"

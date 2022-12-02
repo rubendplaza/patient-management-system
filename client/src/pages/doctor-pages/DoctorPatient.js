@@ -62,6 +62,9 @@ const DoctorPatient = (props) => {
         >
           My Patient
         </Menu.Item>
+        <Menu.Item as={NavLink} to="/faq" name="FAQ" active={false}>
+          FAQ
+        </Menu.Item>
         <Menu.Item
           as={NavLink}
           to="/"
