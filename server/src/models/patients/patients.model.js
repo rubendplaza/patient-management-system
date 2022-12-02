@@ -9,8 +9,8 @@ async function addPatient(patient) {
 }
 
 async function getPatient(patient_id) {
-  return await patients.findOne(
-    { _id: ObjectId(patient_id), },
+  return await patients.findById(
+    patient_id,
     { __v: 0, }
   )
 }
